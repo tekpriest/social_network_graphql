@@ -1,0 +1,53 @@
+type Auth {
+  user: User!
+  token: String!
+}
+
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  password: String!
+  fullName: String
+  avatar: String
+  emailVerified: Boolean
+  createdAt: String!
+  posts: [Post!]!
+}
+
+input Register {
+  email: String!
+  username: String!
+  password: String!
+  fullName: String
+  avatar: String
+}
+
+input Login {
+  username: String!
+  password: String!
+}
+
+input Update {
+  username: String
+  fullName: String
+  password: String
+  avatar: String
+}
+
+input AuthToken {
+  token: String!
+}
+
+input EmailToken {
+  token: String!
+}
+
+type Mutation {
+  register(input: Register!): User!
+  login(input: Login!): Auth!
+  profile(input: AuthToken!): User!
+  verifyAccount(input: EmailToken!): User!
+  updateAccount(input: Update!): User!
+  createPost(input: NewPost!): Post!
+}
